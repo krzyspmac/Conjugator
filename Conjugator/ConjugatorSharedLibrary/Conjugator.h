@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Conjugator persons.
+ */
 typedef enum : NSUInteger {
     Conjugator_Je               = 0,
     Conjugator_Tu               = 1,
@@ -18,6 +21,9 @@ typedef enum : NSUInteger {
     Conjugator_Ils_Elles        = 5,
 } Conjugator_Person;
 
+/**
+ Conjugator modes.
+ */
 typedef enum : NSUInteger {
     ConjugatorMode_Present,
     ConjugatorMode_PPasse, 
@@ -26,12 +32,29 @@ typedef enum : NSUInteger {
 
 @interface Conjugator : NSObject
 
-- (id)init; // with default verbs.xml file; should be included with the library itself
+/**
+ Default initializer. Will try to initialize with -initWithContentsOfRulesXML: and use the verbs.xml that is include in the shared library.
+ */
+- (id)init;
+
+/**
+ Custom initializer. Give an URL to the vers.xml file.
+ */
 - (id)initWithContentsOfRulesXML:(NSURL*)rulesXMLURL;
+
+/**
+ Return an array with rules loaded off the verbs.xml
+ */
 @property (nonatomic, readonly) NSArray * prototypeRules;
 
-- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)type mode:(Conjugator_Mode)mode;
-
+/**
+ Return `je' for Conjugator_Je, `tu' for Conjugator_Tu, etc.
+ */
 + (NSString*)textForPerson:(Conjugator_Person)person;
+
+/**
+ Conjugate the appropriate person using given mode.
+ */
+- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)type mode:(Conjugator_Mode)mode;
 
 @end
