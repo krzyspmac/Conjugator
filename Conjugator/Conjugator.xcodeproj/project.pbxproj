@@ -21,6 +21,7 @@
 		7F2A94D31C1FB2AD0043C915 /* Conjugator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F2A94D11C1FB2AD0043C915 /* Conjugator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7F2A94D41C1FB2AD0043C915 /* Conjugator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2A94D21C1FB2AD0043C915 /* Conjugator.m */; };
 		7F2A94D61C1FB2F40043C915 /* verbs.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7F2A94D51C1FB2B90043C915 /* verbs.xml */; };
+		7F305F801C55A188008DC915 /* verbs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F305F7F1C55A188008DC915 /* verbs.plist */; };
 		7F82ED911C1FE7540091FA30 /* ConjugatorStaticLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7F82ED901C1FE7540091FA30 /* ConjugatorStaticLibrary.h */; };
 		7F82ED931C1FE7540091FA30 /* ConjugatorStaticLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F82ED921C1FE7540091FA30 /* ConjugatorStaticLibrary.m */; };
 		7F82ED971C1FE7610091FA30 /* Conjugator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2A94D21C1FB2AD0043C915 /* Conjugator.m */; };
@@ -75,7 +76,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7F2A94861C1FB21B0043C915 /* SampleApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F2A94861C1FB21B0043C915 /* ConjugComponent Sample Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ConjugComponent Sample Application.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F2A94891C1FB21B0043C915 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F2A948A1C1FB21B0043C915 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7F2A948C1C1FB21B0043C915 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 		7F2A94D11C1FB2AD0043C915 /* Conjugator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conjugator.h; sourceTree = "<group>"; };
 		7F2A94D21C1FB2AD0043C915 /* Conjugator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conjugator.m; sourceTree = "<group>"; };
 		7F2A94D51C1FB2B90043C915 /* verbs.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = verbs.xml; sourceTree = "<group>"; };
+		7F305F7F1C55A188008DC915 /* verbs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = verbs.plist; sourceTree = "<group>"; };
 		7F82ED8E1C1FE7540091FA30 /* libConjugatorStaticLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libConjugatorStaticLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F82ED901C1FE7540091FA30 /* ConjugatorStaticLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConjugatorStaticLibrary.h; sourceTree = "<group>"; };
 		7F82ED921C1FE7540091FA30 /* ConjugatorStaticLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConjugatorStaticLibrary.m; sourceTree = "<group>"; };
@@ -147,7 +149,7 @@
 		7F2A94471C1FB0B90043C915 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7F2A94861C1FB21B0043C915 /* SampleApplication.app */,
+				7F2A94861C1FB21B0043C915 /* ConjugComponent Sample Application.app */,
 				7F2A94B11C1FB2900043C915 /* ConjugatorSharedLibrary.framework */,
 				7F2A94BB1C1FB2900043C915 /* ConjugatorSharedLibraryTests.xctest */,
 				7F82ED8E1C1FE7540091FA30 /* libConjugatorStaticLibrary.a */,
@@ -165,6 +167,7 @@
 				7F2A94921C1FB21B0043C915 /* Main.storyboard */,
 				7F2A94951C1FB21B0043C915 /* Images.xcassets */,
 				7F2A94971C1FB21B0043C915 /* LaunchScreen.xib */,
+				7F305F7F1C55A188008DC915 /* verbs.plist */,
 				7F2A94881C1FB21B0043C915 /* Supporting Files */,
 			);
 			path = SampleApplication;
@@ -240,9 +243,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		7F2A94851C1FB21B0043C915 /* SampleApplication */ = {
+		7F2A94851C1FB21B0043C915 /* Conjug Component Sample application */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7F2A94A61C1FB21C0043C915 /* Build configuration list for PBXNativeTarget "SampleApplication" */;
+			buildConfigurationList = 7F2A94A61C1FB21C0043C915 /* Build configuration list for PBXNativeTarget "Conjug Component Sample application" */;
 			buildPhases = (
 				7F2A94821C1FB21B0043C915 /* Sources */,
 				7F2A94831C1FB21B0043C915 /* Frameworks */,
@@ -254,9 +257,9 @@
 			dependencies = (
 				7F2A94C71C1FB2910043C915 /* PBXTargetDependency */,
 			);
-			name = SampleApplication;
+			name = "Conjug Component Sample application";
 			productName = SampleApplication;
-			productReference = 7F2A94861C1FB21B0043C915 /* SampleApplication.app */;
+			productReference = 7F2A94861C1FB21B0043C915 /* ConjugComponent Sample Application.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7F2A94B01C1FB2900043C915 /* ConjugatorSharedLibrary */ = {
@@ -350,7 +353,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7F2A94851C1FB21B0043C915 /* SampleApplication */,
+				7F2A94851C1FB21B0043C915 /* Conjug Component Sample application */,
 				7F2A94B01C1FB2900043C915 /* ConjugatorSharedLibrary */,
 				7F82ED8D1C1FE7540091FA30 /* ConjugatorStaticLibrary */,
 				7F2A94BA1C1FB2900043C915 /* ConjugatorSharedLibraryTests */,
@@ -366,6 +369,7 @@
 				7F2A94941C1FB21B0043C915 /* Main.storyboard in Resources */,
 				7F2A94991C1FB21B0043C915 /* LaunchScreen.xib in Resources */,
 				7F2A94961C1FB21B0043C915 /* Images.xcassets in Resources */,
+				7F305F801C55A188008DC915 /* verbs.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +436,7 @@
 		};
 		7F2A94C01C1FB2910043C915 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7F2A94851C1FB21B0043C915 /* SampleApplication */;
+			target = 7F2A94851C1FB21B0043C915 /* Conjug Component Sample application */;
 			targetProxy = 7F2A94BF1C1FB2910043C915 /* PBXContainerItemProxy */;
 		};
 		7F2A94C71C1FB2910043C915 /* PBXTargetDependency */ = {
@@ -552,7 +556,7 @@
 				INFOPLIST_FILE = SampleApplication/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ConjugComponent Sample Application";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -565,7 +569,7 @@
 				INFOPLIST_FILE = SampleApplication/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ConjugComponent Sample Application";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -688,7 +692,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7F2A94A61C1FB21C0043C915 /* Build configuration list for PBXNativeTarget "SampleApplication" */ = {
+		7F2A94A61C1FB21C0043C915 /* Build configuration list for PBXNativeTarget "Conjug Component Sample application" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7F2A94A71C1FB21C0043C915 /* Debug */,

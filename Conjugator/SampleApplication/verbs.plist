@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beginner</key>
+	<array>
+<string>être</string>
+<string>avoir</string>
+<string>pouvoir</string>
+<string>faire</string>
+<string>mettre</string>
+<string>dire</string>
+<string>devoir</string>
+<string>prendre</string>
+<string>donner</string>
+<string>aller</string>
+<string>vouloir</string>
+<string>savoir</string>
+<string>falloir</string>
+<string>voir</string>
+<string>demander</string>
+<string>trouver</string>
+<string>rendre</string>
+<string>venir</string>
+<string>passer</string>
+<string>comprendre</string>
+<string>rester</string>
+<string>tenir</string>
+<string>porter</string>
+<string>parler</string>
+<string>montrer</string>
+<string>continuer</string>
+<string>penser</string>
+<string>suivre</string>
+<string>connaître</string>
+<string>croire</string>
+<string>commencer</string>
+<string>compter</string>
+<string>entendre</string>
+<string>attendre</string>
+<string>remettre</string>
+<string>appeler</string>
+<string>permettre</string>
+<string>occuper</string>
+<string>devenir</string>
+<string>partir</string>
+<string>décider</string>
+<string>arriver</string>
+<string>servir</string>
+<string>sembler</string>
+<string>revenir</string>
+<string>laisser</string>
+<string>recevoir</string>
+<string>répondre</string>
+<string>vivre</string>
+<string>rappeler</string>
+<string>présenter</string>
+<string>accepter</string>
+<string>agir</string>
+<string>poser</string>
+<string>jouer</string>
+<string>reconnaître</string>
+<string>choisir</string>
+<string>toucher</string>
+<string>aimer</string>
+<string>retrouver</string>
+<string>perdre</string>
+<string>expliquer</string>
+<string>considérer</string>
+<string>ouvrir</string>
+<string>gagner</string>
+<string>exister</string>
+<string>refuser</string>
+<string>lire</string>
+<string>réussir</string>
+<string>changer</string>
+<string>travailler</string>
+<string>représenter</string>
+<string>assurer</string>
+<string>essayer</string>
+<string>empêcher</string>
+<string>sortir</string>
+<string>reprendre</string>
+<string>mener</string>
+<string>appartenir</string>
+<string>risquer</string>
+<string>concerner</string>
+<string>apprendre</string>
+<string>rencontrer</string>
+<string>créer</string>
+<string>obtenir</string>
+<string>chercher</string>
+<string>entrer</string>
+<string>proposer</string>
+<string>apporter</string>
+<string>utiliser</string>
+<string>atteindre</string>
+<string>tenter</string>
+<string>importer</string>
+<string>ajouter</string>
+<string>produire</string>
+<string>préparer</string>
+<string>relever</string>
+<string>écrire</string>
+<string>défendre</string>
+<string>tirer</string>
+
+	</array>
+	<key>intermediate</key>
+	<array/>
+	<key>advanced</key>
+	<array/>
+</dict>
+</plist>

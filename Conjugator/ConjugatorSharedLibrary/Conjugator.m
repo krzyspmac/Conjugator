@@ -104,6 +104,11 @@ static NSArray * rulesArray = Nil;
     
     for( ConjugatorPrototype * aPrototype in _prototypeRules ) {
         NSRegularExpression * regex = aPrototype.regularExpression;
+        if( regex == Nil ) {
+            // a wrong regex!
+            continue;
+        }
+        
         @try {
             if( [regex numberOfMatchesInString:verb options:0 range:regexSearchRange] > 0 ) {
                 foundPrototype = aPrototype;
@@ -196,6 +201,10 @@ static NSArray * rulesArray = Nil;
 @end
 
 
+@interface ConjugatorPrototype ()
+@property (nonatomic, assign) BOOL didInitialize;
+@end
+
 @implementation ConjugatorPrototype
 
 - (NSString *)description;
@@ -207,11 +216,12 @@ static NSArray * rulesArray = Nil;
 
 - (NSRegularExpression*)regularExpression;
 {
-    if( !_regularExpression ) {
+    if( !_regularExpression && !_didInitialize ) {
+        self.didInitialize = YES;
         NSError * error;
-        _regularExpression = [[NSRegularExpression alloc] initWithPattern:_regex options:0 error:&error];
+        _regularExpression = [[NSRegularExpression alloc] initWithPattern:_regex options:NSRegularExpressionUseUnicodeWordBoundaries error:&error];
         if( !_regularExpression ) {
-            NSLog(@"%@", error);
+            NSLog(@"Could not initialize regex: %@ with error: %@", _regex, error);
         }
     }
     return _regularExpression;
