@@ -141,9 +141,11 @@ static NSArray * rulesArray = Nil;
             if( [processedEnding rangeOfString:@"?"].location != NSNotFound && matchedInsideRegexInVerb ) { // ? replaces a found string inside the regex
                 processedEnding = [selectedEnding stringByReplacingOccurrencesOfString:@"?" withString:matchedInsideRegexInVerb];
             }
-            NSRange range = [verb rangeOfString:ending];
-            NSString * radical = [verb substringToIndex:range.location];
-            result = [radical stringByAppendingString:processedEnding];
+            NSRange range = [verb rangeOfString:ending options:NSBackwardsSearch];
+            if( range.location != NSNotFound && range.location < verb.length ) {
+                NSString * radical = [verb substringToIndex:range.location];
+                result = [radical stringByAppendingString:processedEnding];
+            }
             return result;
         };
         

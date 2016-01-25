@@ -48,6 +48,23 @@
     
     XCTAssertTrue([[_conjugator conjugateVerb:@"soumettre" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"soumets"], @"Wrong conjugation result");
     XCTAssertTrue([[_conjugator conjugateVerb:@"soumettre" type:Conjugator_Je mode:ConjugatorMode_PPasse] isEqualToString:@"soumis"], @"Wrong conjugation result");
+    
+    XCTAssertTrue([[_conjugator conjugateVerb:@"permettre" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"permets"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"servir" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"sers"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"savoir" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"sais"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"chercher" type:Conjugator_Nous mode:ConjugatorMode_Present] isEqualToString:@"cherchons"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"savoir" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"sais"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"concerner" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"concerne"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"consolider" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"consolide"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"écrire" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"écris"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"appeler" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"appelle"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"appeler" type:Conjugator_Je mode:ConjugatorMode_PPasse] isEqualToString:@"appelé"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"jeter" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"jette"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"perdre" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"perds"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"relever" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"relève"], @"Wrong conjugation result");
+
+    // only the third person; so far doesn't work; TODO
+    //XCTAssertTrue([[_conjugator conjugateVerb:@"falloir" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"sers"], @"Wrong conjugation result");
 }
 
 - (void)testParticipePasse;

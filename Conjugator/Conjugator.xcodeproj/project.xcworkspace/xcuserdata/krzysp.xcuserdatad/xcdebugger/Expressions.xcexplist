@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <VariablesViewState
    version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "__38-[Conjugator conjugateVerb:type:mode:]_block_invoke:Conjugator.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[Conjugator conjugateVerb:type:mode:]:Conjugator.m">
+      </ContextState>
+   </ContextStates>
 </VariablesViewState>

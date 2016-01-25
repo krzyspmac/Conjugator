@@ -56,6 +56,18 @@ enum : NSUInteger {
         verb = @"célébrer";
         verb = @"céder";
         verb = @"régler";
+        verb = @"savoir";
+        verb = @"avoir";
+        verb = @"acheter";
+        verb = @"permettre";
+        verb =
+        //    @"servir"
+//        @"savoir"
+//        @"chercher"
+//        @"consolider"
+//        @"appeler"
+        @"relever"
+        ;
 #endif
         _conjugatedVerbLabel.text = [NSString stringWithFormat:@"%@ %ld/%ld", verb, (long)_verbIndex+1, (long)_verbs.count];
         for( NSInteger tag = UITAG_Person_Sing_1st; tag <= UITAG_Person_Plur_3rd; tag++ ) {
