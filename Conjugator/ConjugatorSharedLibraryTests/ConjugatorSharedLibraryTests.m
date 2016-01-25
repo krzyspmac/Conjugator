@@ -63,6 +63,10 @@
     XCTAssertTrue([[_conjugator conjugateVerb:@"perdre" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"perds"], @"Wrong conjugation result");
     XCTAssertTrue([[_conjugator conjugateVerb:@"relever" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"relève"], @"Wrong conjugation result");
 
+    XCTAssertTrue([[_conjugator conjugateVerb:@"considérer" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"considère"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"considérer" type:Conjugator_Je mode:ConjugatorMode_Imparfait] isEqualToString:@"considérais"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"considérer" type:Conjugator_Je mode:ConjugatorMode_PPasse] isEqualToString:@"considéré"], @"Wrong conjugation result");
+    
     // only the third person; so far doesn't work; TODO
     //XCTAssertTrue([[_conjugator conjugateVerb:@"falloir" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"sers"], @"Wrong conjugation result");
 }
