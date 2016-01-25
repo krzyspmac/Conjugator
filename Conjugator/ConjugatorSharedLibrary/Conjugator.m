@@ -100,7 +100,9 @@ static NSArray * rulesArray = Nil;
     NSString * result = Nil;
     NSRange regexSearchRange = NSMakeRange(0, verb.length);
     
-    ConjugatorPrototype * foundPrototype = Nil;
+    __block ConjugatorPrototype * foundPrototype = Nil;
+    __block NSRegularExpression * foundRegularExpression = Nil;
+    __block NSString * matchedInsideRegexInVerb = Nil;
     
     for( ConjugatorPrototype * aPrototype in _prototypeRules ) {
         NSRegularExpression * regex = aPrototype.regularExpression;
@@ -111,7 +113,17 @@ static NSArray * rulesArray = Nil;
         
         @try {
             if( [regex numberOfMatchesInString:verb options:0 range:regexSearchRange] > 0 ) {
+                NSArray * matches = [regex matchesInString:verb options:0 range:regexSearchRange];
+                if( matches.count ) {
+                    NSTextCheckingResult * matchingResult = matches[0];
+                    NSInteger numberOfRanges = [matchingResult numberOfRanges];
+                    if( numberOfRanges > 1 ) {
+                        NSRange range = [matchingResult rangeAtIndex:1];
+                        matchedInsideRegexInVerb = [verb substringWithRange:range];
+                    }
+                }
                 foundPrototype = aPrototype;
+                foundRegularExpression = regex;
                 break;
             }
         }
@@ -124,9 +136,14 @@ static NSArray * rulesArray = Nil;
         NSString * componentsString = Nil;
         
         NSString * (^CombineConjugasion)(NSString*, NSString*, NSString*) = ^ NSString * (NSString * verb, NSString * ending, NSString * selectedEnding) {
+            NSString * result = Nil;
+            NSString * processedEnding = selectedEnding;
+            if( [processedEnding rangeOfString:@"?"].location != NSNotFound && matchedInsideRegexInVerb ) { // ? replaces a found string inside the regex
+                processedEnding = [selectedEnding stringByReplacingOccurrencesOfString:@"?" withString:matchedInsideRegexInVerb];
+            }
             NSRange range = [verb rangeOfString:ending];
             NSString * radical = [verb substringToIndex:range.location];
-            NSString * result = [radical stringByAppendingString:selectedEnding];
+            result = [radical stringByAppendingString:processedEnding];
             return result;
         };
         
