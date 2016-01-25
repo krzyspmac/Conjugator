@@ -48,18 +48,11 @@ def GetPersonAndConjugatedVerb(conjugatedPhrase):
 	return [resultPerson, resultConjugated]
 	pass
 
-def CreateConjugFile(verb):
-	websiteURL = "http://la-conjugaison.nouvelobs.com/du/verbe/" + verb + ".php"
-	page = requests.get(websiteURL)
-	tree = html.fromstring(page.content)
-	tabPresent = tree.xpath('//div[@class="tempstab"][1]/div[@class="tempscorps"]/node()')
-	
+def GetDictionaryOfTense(tab, name):	
 	conjugatedDictionary = {}
-	
 	conjugated = ""
 	
-	for child in tabPresent:
-
+	for child in tab:
 		if isinstance(child, etree._Element):
 			if child.tag == "b":
 				conjugated += child.text
@@ -75,12 +68,38 @@ def CreateConjugFile(verb):
 		elif isinstance(child, etree._ElementStringResult):
 			conjugated += child
 			pass
-			
 		pass
-	pass
 
-	if len(conjugatedDictionary) > 0:
-		return conjugatedDictionary
+	return conjugatedDictionary
+
+def CreateConjugFile(verb):
+	websiteURL = "http://la-conjugaison.nouvelobs.com/du/verbe/" + verb + ".php"
+	page = requests.get(websiteURL)
+	tree = html.fromstring(page.content)
+	
+	tabPresent = tree.xpath('//div[@class="tempstab"][1]/div[@class="tempscorps"]/node()')
+	dicPresent = GetDictionaryOfTense(tabPresent, "present")
+
+	tabImparfait = tree.xpath('//div[@class="tempstab"][3]/div[@class="tempscorps"]/node()')
+	dicImparfait = GetDictionaryOfTense(tabImparfait, "imparfait")
+
+	tabPasseSimple = tree.xpath('//div[@class="tempstab"][5]/div[@class="tempscorps"]/node()')
+	dicPasseSimple = GetDictionaryOfTense(tabPasseSimple, "passeSimple")
+
+	tabFutureSimple = tree.xpath('//div[@class="tempstab"][7]/div[@class="tempscorps"]/node()')
+	dicFutureSimple = GetDictionaryOfTense(tabFutureSimple, "futureSimple")
+
+	tabPasseCompose = tree.xpath('//div[@class="tempstab"][2]/div[@class="tempscorps"]/node()')
+	dicPasseCompose = GetDictionaryOfTense(tabPasseCompose, "passeCompose")
+
+	tabPlusqueParfait = tree.xpath('//div[@class="tempstab"][4]/div[@class="tempscorps"]/node()')
+	dicPlusqueParfait = GetDictionaryOfTense(tabPlusqueParfait, "plusqueParfait")
+
+
+	resultDictionary = {"present": dicPresent, "imparfait": dicImparfait, "passeSimple": dicPasseSimple, "futureSimple": dicFutureSimple, "passeCompose": dicPasseCompose, "plusqueParfait": dicPlusqueParfait}
+
+	if len(resultDictionary) > 0:
+		return resultDictionary
 	else:
 		return None
 	pass
