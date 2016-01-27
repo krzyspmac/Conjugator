@@ -65,8 +65,8 @@ def GetDictionaryOfTense(tab, name):
 					conjugatedDictionary[array[0]] = array[1]
 				else:
 					# Force error
-					print "Wrong data. Could not get conjugation. Cannot continue"
-					exit(1)
+					print "Wrong data. Could not get conjugation (falloir or other erorr)"
+					pass
 				conjugated = ""
 				pass
 			pass
