@@ -2,7 +2,7 @@
 A simple french conjugator object in Obj-C. Verbs.xml has been taken off the web. All rights belong to the original author. The conjugator is free for use. Just use responsively ;)
 
 ## State
-Not yet ready. Maybe in the future.
+Not yet ready. Maybe in the future but getting there.
 
 ## Linking and building
 The project is designed as an ARC, shared-library piece of code. You can use it as such (iOS 8 required) or add the code diretly and omit the shared_library thingy.
