@@ -31,10 +31,11 @@ def GetStringIndex(str1, str2):
 def GetPersonAndConjugatedVerb(conjugatedPhrase):
 	resultPerson = None
 	resultConjugated = None
-	
+
 	global Persons
 	for person in Persons:
 		personIndex = GetStringIndex(conjugatedPhrase, person)
+
 		if personIndex == 0:
 			resultPerson = person.strip()
 			farIndex = personIndex + len(person)
@@ -45,13 +46,13 @@ def GetPersonAndConjugatedVerb(conjugatedPhrase):
 	if resultPerson == "j'":
 		resultPerson = "je"
 		pass
+
 	return [resultPerson, resultConjugated]
 	pass
 
 def GetDictionaryOfTense(tab, name):	
 	conjugatedDictionary = {}
 	conjugated = ""
-	
 	for child in tab:
 		if isinstance(child, etree._Element):
 			if child.tag == "b":
@@ -62,11 +63,16 @@ def GetDictionaryOfTense(tab, name):
 				array = GetPersonAndConjugatedVerb(conjugated);
 				if array[0] is not None and array[1] is not None:
 					conjugatedDictionary[array[0]] = array[1]
-					pass
+				else:
+					print "Wrong data. Could not get conjugation. Cannot continue"
+					exit(1)
 				conjugated = ""
 				pass
 			pass
 		elif isinstance(child, etree._ElementStringResult):
+			conjugated += child
+			pass
+		elif isinstance(child, etree._ElementUnicodeResult):
 			conjugated += child
 			pass
 		pass
