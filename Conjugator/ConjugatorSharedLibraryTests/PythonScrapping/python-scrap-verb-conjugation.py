@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# Install the following
 # install pip: curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python
 # install xcode command line tools: xcode-select --install
 # install pip: sudo easy_install pip
