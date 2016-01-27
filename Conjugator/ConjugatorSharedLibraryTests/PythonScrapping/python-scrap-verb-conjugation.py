@@ -55,7 +55,8 @@ def GetDictionaryOfTense(tab, name):
 	for child in tab:
 		if isinstance(child, etree._Element):
 			if child.tag == "b":
-				conjugated += child.text
+				if child.text != None:
+					conjugated += child.text
 				pass
 			if child.tag == "br":
 				array = GetPersonAndConjugatedVerb(conjugated);
@@ -137,6 +138,8 @@ def main(argv):
 	pass
 	
 ##########################################################################################
+			
+# problems: defendre
 			
 if __name__ == "__main__":
 	main(sys.argv[1:])

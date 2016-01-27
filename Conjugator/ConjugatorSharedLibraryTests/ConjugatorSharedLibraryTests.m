@@ -88,7 +88,56 @@
 
 - (void)testVerbs;
 {
+    NSBundle * testBundle = [NSBundle bundleForClass:[self class]];
+    NSString * conjugatedVerbsBundlePath = [testBundle pathForResource:@"ConjugatedVerbs" ofType:Nil];
+    XCTAssertNotNil(conjugatedVerbsBundlePath, @"Path must exist");
     
+    NSBundle * conjugatedVerbsBundle = [[NSBundle alloc] initWithPath:conjugatedVerbsBundlePath];
+    XCTAssertNotNil(conjugatedVerbsBundle, @"Bundle must exist");
+    
+    NSDictionary * verbsDictionary = [[NSDictionary alloc] initWithContentsOfFile:[conjugatedVerbsBundle pathForResource:@"verbs" ofType:@"plist"]];
+    XCTAssertNotNil(verbsDictionary, @"NSDictionary must exist");
+    
+    NSArray * simpleVerbs = verbsDictionary[@"beginner"];
+    XCTAssertNotNil(verbsDictionary, @"Simple verb array must exist");
+    
+    NSArray * personsToTest = @[ @"je", @"tu", @"il", @"nous", @"vous", @"ils" ];
+    
+    void (^TestPersons)(NSString*, Conjugator_Mode, NSDictionary*) = ^(NSString * verb, Conjugator_Mode mode, NSDictionary * tenseDictionary){
+        for( NSInteger i = 0; i < 6; i++ ) {
+            Conjugator_Person person = (Conjugator_Person)Conjugator_Je + i;
+            NSString * personString = personsToTest[i];
+            
+            NSString * conjugatedByModule = [_conjugator conjugateVerb:verb type:person mode:mode];
+            NSString * conjugatedByScrapper = tenseDictionary[personString];
+            
+            if( ![conjugatedByModule isEqualToString:conjugatedByScrapper] ) {
+                NSLog(@"Wrong conjugator result for verb: %@, person: %@ (is=%@,shouldBe=%@", verb, personString, conjugatedByModule, conjugatedByScrapper);
+            }
+            XCTAssertTrue([conjugatedByModule isEqualToString:conjugatedByScrapper], @"Verb `%@' conjugation error.", verb);
+        }
+    };
+    
+    for( NSString * aVerb in simpleVerbs ) {
+        NSData *data = [aVerb dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+        NSString *verbWithoutAccents = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+        XCTAssertNotNil(verbWithoutAccents, @"Verb must exist");
+        
+        NSString * conjugatedVerbPath = [conjugatedVerbsBundle pathForResource:verbWithoutAccents ofType:@"json"];
+        XCTAssertNotNil(verbWithoutAccents, @"Conjugated verb must exist in the bundle");
+        
+        NSData * jsonData = [[NSData alloc] initWithContentsOfFile:conjugatedVerbPath];
+        XCTAssertNotNil(jsonData, @"JSON data must exist");
+        
+        if( jsonData ) {
+            NSError * error;
+            NSDictionary * jsonDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+            XCTAssertNotNil(jsonDictionary, @"JSON dictionary must exist for verb: %@", aVerb);
+            
+            NSDictionary * tensePresent = jsonDictionary[@"present"];
+            TestPersons(aVerb, ConjugatorMode_Present, tensePresent);
+        }
+    }
 }
 
 @end
