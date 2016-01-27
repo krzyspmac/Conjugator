@@ -12,6 +12,7 @@ from lxml import etree
 import requests
 import json
 import sys, getopt
+import unicodedata
 
 ##########################################################################################
 
@@ -44,7 +45,6 @@ def GetPersonAndConjugatedVerb(conjugatedPhrase):
 	if resultPerson == "j'":
 		resultPerson = "je"
 		pass
-	
 	return [resultPerson, resultConjugated]
 	pass
 
@@ -132,7 +132,7 @@ def main(argv):
 	jsonDictionary = CreateConjugFile(verb)
 	if jsonDictionary is not None:
 		with open(outputfile, 'w') as outfile:
-			json.dump(jsonDictionary, outfile)
+			json.dump(jsonDictionary, outfile, ensure_ascii=True)
 		pass
 	pass
 	
