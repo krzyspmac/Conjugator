@@ -64,6 +64,7 @@ def GetDictionaryOfTense(tab, name):
 				if array[0] is not None and array[1] is not None:
 					conjugatedDictionary[array[0]] = array[1]
 				else:
+					# Force error
 					print "Wrong data. Could not get conjugation. Cannot continue"
 					exit(1)
 				conjugated = ""
