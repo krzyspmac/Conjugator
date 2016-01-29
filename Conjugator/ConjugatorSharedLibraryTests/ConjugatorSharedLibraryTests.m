@@ -146,6 +146,9 @@
     TestVerb(@"mener");
 #else
     for( NSString * aVerb in simpleVerbs ) {
+        if( [aVerb isEqualToString:@"falloir"] ) {
+            continue;
+        }
         TestVerb(aVerb);
     }
 #endif
