@@ -38,6 +38,9 @@
     NSString * result = [_conjugator conjugateVerb:@"être" type:Conjugator_Je mode:ConjugatorMode_Present];
     XCTAssertNotNil(result, @"Must have a result");
     XCTAssertTrue([result isEqualToString:@"suis"], @"Wrong conjugation returned");
+    
+    XCTAssertTrue([[_conjugator conjugateVerb:@"mener" type:Conjugator_Tu mode:ConjugatorMode_Present] isEqualToString:@"mènes"], @"Wrong conjugation result");
+    
     XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:Conjugator_Tu mode:ConjugatorMode_Present] isEqualToString:@"es"], @"Wrong conjugation result");
     XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:Conjugator_Il_Elle mode:ConjugatorMode_Present] isEqualToString:@"est"], @"Wrong conjugation result");
     XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:Conjugator_Nous mode:ConjugatorMode_Present] isEqualToString:@"sommes"], @"Wrong conjugation result");
@@ -118,7 +121,7 @@
         }
     };
     
-    for( NSString * aVerb in simpleVerbs ) {
+    void (^TestVerb)(NSString*) = ^(NSString * aVerb) {
         NSData *data = [aVerb dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
         NSString *verbWithoutAccents = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
         XCTAssertNotNil(verbWithoutAccents, @"Verb must exist");
@@ -137,7 +140,15 @@
             NSDictionary * tensePresent = jsonDictionary[@"present"];
             TestPersons(aVerb, ConjugatorMode_Present, tensePresent);
         }
+    };
+
+#if 0
+    TestVerb(@"mener");
+#else
+    for( NSString * aVerb in simpleVerbs ) {
+        TestVerb(aVerb);
     }
+#endif
 }
 
 @end
