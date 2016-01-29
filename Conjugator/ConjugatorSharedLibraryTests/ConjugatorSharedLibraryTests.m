@@ -114,10 +114,30 @@
             NSString * conjugatedByModule = [_conjugator conjugateVerb:verb type:person mode:mode];
             NSString * conjugatedByScrapper = tenseDictionary[personString];
             
-            if( ![conjugatedByModule isEqualToString:conjugatedByScrapper] ) {
-                NSLog(@"Wrong conjugator result for verb: %@, person: %@ (is=%@,shouldBe=%@", verb, personString, conjugatedByModule, conjugatedByScrapper);
+            if( [conjugatedByScrapper rangeOfString:@"/"].location != NSNotFound ) {
+                BOOL atLeastOneIsCorrect = NO;
+                
+                NSArray * components = [conjugatedByScrapper componentsSeparatedByString:@"/"];
+                for( NSString * conjugatedByScrapper in components ) {
+                    if( atLeastOneIsCorrect ) {
+                        break;
+                    }
+                    if( [conjugatedByModule isEqualToString:conjugatedByScrapper] ) {
+                        atLeastOneIsCorrect = YES;
+                    }
+                    else {
+                        NSLog(@"Wrong conjugator result for verb: %@, person: %@ (is=%@,shouldBe=%@", verb, personString, conjugatedByModule, conjugatedByScrapper);
+                    }
+                };
+                
+                XCTAssertTrue(atLeastOneIsCorrect, @"Wrong conjugation. Check logs.");
             }
-            XCTAssertTrue([conjugatedByModule isEqualToString:conjugatedByScrapper], @"Verb `%@' conjugation error.", verb);
+            else {
+                if( ![conjugatedByModule isEqualToString:conjugatedByScrapper] ) {
+                    NSLog(@"Wrong conjugator result for verb: %@, person: %@ (is=%@,shouldBe=%@", verb, personString, conjugatedByModule, conjugatedByScrapper);
+                }
+                XCTAssertTrue([conjugatedByModule isEqualToString:conjugatedByScrapper], @"Verb `%@' conjugation error.", verb);
+            }
         }
     };
     
@@ -143,7 +163,8 @@
     };
 
 #if 0
-    TestVerb(@"mener");
+//    TestVerb(@"mener");
+//    TestVerb(@"esseyer");
 #else
     for( NSString * aVerb in simpleVerbs ) {
         if( [aVerb isEqualToString:@"falloir"] ) {

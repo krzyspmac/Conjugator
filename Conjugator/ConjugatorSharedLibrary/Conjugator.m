@@ -146,6 +146,12 @@ static NSArray * rulesArray = Nil;
                 NSString * radical = [verb substringToIndex:range.location];
                 result = [radical stringByAppendingString:processedEnding];
             }
+            
+            NSRange rangeOfPossibleAlternateEnding = [result rangeOfString:@"|"];
+            if( rangeOfPossibleAlternateEnding.location != NSNotFound ) {
+                result = [result substringToIndex:rangeOfPossibleAlternateEnding.location];
+            }
+            
             return result;
         };
         
