@@ -95,7 +95,7 @@ static NSArray * rulesArray = Nil;
 
 #pragma mark - Conjugate
 
-- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)type mode:(Conjugator_Mode)mode;
+- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)person mode:(Conjugator_Tense)tense options:(ConjugatorOption)options;
 {
     NSString * result = Nil;
     NSRange regexSearchRange = NSMakeRange(0, verb.length);
@@ -155,14 +155,14 @@ static NSArray * rulesArray = Nil;
             return result;
         };
         
-        switch(mode){
-            case ConjugatorMode_Present:
+        switch(tense){
+            case ConjugatorTense_Present:
             {
                 componentsString = foundPrototype.present;
                 NSArray * components = [componentsString componentsSeparatedByString:@","];
                 if( components.count == 6 ) {
-                    if( type < components.count ) {
-                        result = CombineConjugasion(verb, foundPrototype.ending, components[type]);
+                    if( person < components.count ) {
+                        result = CombineConjugasion(verb, foundPrototype.ending, components[person]);
                     }
                     else {
                         NSLog(@"Conjugator type is higher than possible components indices");
@@ -173,13 +173,13 @@ static NSArray * rulesArray = Nil;
                 }
                 break;
             }
-            case ConjugatorMode_Imparfait:
+            case ConjugatorTense_Imparfait:
             {
                 componentsString = foundPrototype.imparfait;
                 NSArray * components = [componentsString componentsSeparatedByString:@","];
                 if( components.count == 6 ) {
-                    if( type < components.count ) {
-                        result = CombineConjugasion(verb, foundPrototype.ending, components[type]);
+                    if( person < components.count ) {
+                        result = CombineConjugasion(verb, foundPrototype.ending, components[person]);
                     }
                     else {
                         NSLog(@"Conjugator type is higher than possible components indices");
@@ -190,16 +190,27 @@ static NSArray * rulesArray = Nil;
                 }
                 break;
             }
-            case ConjugatorMode_PPasse:
+            case ConjugatorTense_PasseCompose:
             {
                 componentsString = foundPrototype.ppasse;
                 NSArray * components = [componentsString componentsSeparatedByString:@","];
                 if( components.count == 4 ) {
-                    if( type < components.count ) {
-                        result = CombineConjugasion(verb, foundPrototype.ending, components[ (type >= Conjugator_Je && type <= Conjugator_Il_Elle) ? 0 : 2 ]);
+                    NSString * auxVerb = foundPrototype.aux;
+                    NSString * conjugatedPasseCompose = Nil;
+                    
+                    if( ![auxVerb isEqualToString:@"avoir"] ) {
+                        conjugatedPasseCompose = CombineConjugasion(verb, foundPrototype.ending, components[ (person >= Conjugator_Je && person <= Conjugator_Il_Elle) ? 0 : 2 ]);
                     }
                     else {
-                        NSLog(@"Conjugator type is higher than possible components indices");
+                        conjugatedPasseCompose = CombineConjugasion(verb, foundPrototype.ending, components[0]);
+                    }
+                    
+                    if( options & ConjugatorOption_IncludeAxuliaryVerb ) {
+                        NSString * conjugatedAux = [self conjugateVerb:auxVerb type:person mode:ConjugatorTense_Present options:0];
+                        result = [NSString stringWithFormat:@"%@ %@", conjugatedAux, conjugatedPasseCompose];
+                    }
+                    else {
+                        result = conjugatedPasseCompose;
                     }
                 }
                 else {

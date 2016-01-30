@@ -73,7 +73,7 @@ enum : NSUInteger {
         _conjugatedVerbLabel.text = [NSString stringWithFormat:@"%@ %ld/%ld", verb, (long)_verbIndex+1, (long)_verbs.count];
         for( NSInteger tag = UITAG_Person_Sing_1st; tag <= UITAG_Person_Plur_3rd; tag++ ) {
             UILabel * label = (UILabel*)[self.view viewWithTag:tag];
-            label.text = [_conjugator conjugateVerb:verb type:[ViewController getConjugatorPersonFromTag:tag] mode:ConjugatorMode_Present];
+            label.text = [_conjugator conjugateVerb:verb type:[ViewController getConjugatorPersonFromTag:tag] mode:ConjugatorTense_Present options:0];
         }
     }
 }

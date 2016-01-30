@@ -22,13 +22,20 @@ typedef enum : NSUInteger {
 } Conjugator_Person;
 
 /**
- Conjugator modes.
+ Conjugator tenses.
  */
 typedef enum : NSUInteger {
-    ConjugatorMode_Present,
-    ConjugatorMode_PPasse, 
-    ConjugatorMode_Imparfait
-} Conjugator_Mode;
+    ConjugatorTense_Present,
+    ConjugatorTense_PasseCompose, 
+    ConjugatorTense_Imparfait
+} Conjugator_Tense;
+
+/**
+ Conjugator options
+ */
+typedef enum : NSUInteger {
+    ConjugatorOption_IncludeAxuliaryVerb   = 1
+} ConjugatorOption;
 
 @interface Conjugator : NSObject
 
@@ -55,6 +62,6 @@ typedef enum : NSUInteger {
 /**
  Conjugate the appropriate person using given mode.
  */
-- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)type mode:(Conjugator_Mode)mode;
+- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)person mode:(Conjugator_Tense)tense options:(ConjugatorOption)options;
 
 @end
