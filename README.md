@@ -1,12 +1,31 @@
 # Conjugator
-A simple french conjugator object in Obj-C. Verbs.xml has been taken off the web. All rights belong to the original author. The conjugator is free for use. Just use responsively ;)
+
+A simple french conjugator class in Obj-C. The base for french conjugation has been taken from <http://sourceforge.net/projects/fvcr/> and modified where appropriate (NSRegularExpression differences, added support for a couple of verbs, etc.).
+
+# State
+
+So far this code is under development. Functionality and implementation will change rapidly.
+
+## Functionality
+
+|Implemented|Functionality|
+|:-----------:|-------------|
+| x | Present tense |
+| x | Imparfait 		|
+| x | Passé composé |
+|   | Subjonctif		|
+
+## Testing and compliance
+
+|Implemented|Verb compliance|
+|:-----------:|-------------|
+| x | 100 most used |
+|   | 500 most used	|
+|   | 1000 most used|
 
 # License
 
 This software is licensed using the `MIT License`. Please see the end of this document.
-
-# State
-Not yet ready. Maybe in the future but getting there.
 
 # Linking and building
 The project is designed as an ARC, shared-library piece of code. You can use it as such (iOS 8 required) or add the code diretly and omit the shared_library thingy.
