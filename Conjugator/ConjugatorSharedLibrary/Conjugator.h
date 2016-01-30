@@ -35,7 +35,7 @@ typedef enum : NSUInteger {
  */
 typedef enum : NSUInteger {
     ConjugatorOption_IncludeAxuliaryVerb   = 1
-} ConjugatorOption;
+} Conjugator_Option;
 
 @interface Conjugator : NSObject
 
@@ -62,6 +62,6 @@ typedef enum : NSUInteger {
 /**
  Conjugate the appropriate person using given mode.
  */
-- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)person mode:(Conjugator_Tense)tense options:(ConjugatorOption)options;
+- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)person mode:(Conjugator_Tense)tense options:(Conjugator_Option)options;
 
 @end

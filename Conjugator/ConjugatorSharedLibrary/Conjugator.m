@@ -95,7 +95,7 @@ static NSArray * rulesArray = Nil;
 
 #pragma mark - Conjugate
 
-- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)person mode:(Conjugator_Tense)tense options:(ConjugatorOption)options;
+- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)person mode:(Conjugator_Tense)tense options:(Conjugator_Option)options;
 {
     NSString * result = Nil;
     NSRange regexSearchRange = NSMakeRange(0, verb.length);

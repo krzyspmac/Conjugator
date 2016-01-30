@@ -70,10 +70,14 @@ enum : NSUInteger {
         @"considérer"
         ;
 #endif
+        
+        Conjugator_Tense tense = (Conjugator_Tense)_selectedTense;
+        Conjugator_Option option = _useAuxiliaryVerbSwitch.on ? ConjugatorOption_IncludeAxuliaryVerb : 0;
+        
         _conjugatedVerbLabel.text = [NSString stringWithFormat:@"%@ %ld/%ld", verb, (long)_verbIndex+1, (long)_verbs.count];
         for( NSInteger tag = UITAG_Person_Sing_1st; tag <= UITAG_Person_Plur_3rd; tag++ ) {
             UILabel * label = (UILabel*)[self.view viewWithTag:tag];
-            label.text = [_conjugator conjugateVerb:verb type:[ViewController getConjugatorPersonFromTag:tag] mode:ConjugatorTense_Present options:0];
+            label.text = [_conjugator conjugateVerb:verb type:[ViewController getConjugatorPersonFromTag:tag] mode:tense options:option];
         }
     }
 }
@@ -90,6 +94,22 @@ enum : NSUInteger {
     if( _verbIndex < _verbs.count ) {
         self.verbIndex++;
     }
+}
+
+- (void)update;
+{
+    [self setVerbIndex:_verbIndex];
+}
+
+- (IBAction)switchTense:(UISegmentedControl*)sender;
+{
+    self.selectedTense = (Tense)sender.selectedSegmentIndex;
+    [self update];
+}
+
+- (IBAction)useAuxiliaryVerbSwitch:(id)sender;
+{
+    [self update];
 }
 
 + (Conjugator_Person)getConjugatorPersonFromTag:(NSInteger)tag;

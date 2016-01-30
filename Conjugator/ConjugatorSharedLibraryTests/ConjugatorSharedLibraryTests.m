@@ -118,7 +118,7 @@
         return result;
     };
     
-    void (^TestPersons)(NSString*, Conjugator_Tense, ConjugatorOption, NSDictionary*) = ^(NSString * verb, Conjugator_Tense mode, ConjugatorOption option, NSDictionary * tenseDictionary){
+    void (^TestPersons)(NSString*, Conjugator_Tense, Conjugator_Option, NSDictionary*) = ^(NSString * verb, Conjugator_Tense mode, Conjugator_Option option, NSDictionary * tenseDictionary){
         for( NSInteger i = 0; i < 6; i++ ) {
             Conjugator_Person person = (Conjugator_Person)Conjugator_Je + i;
             NSString * personString = personsToTest[i];

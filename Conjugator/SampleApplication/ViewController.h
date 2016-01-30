@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    Tense_Present,
+    Tense_PasseCompose,
+    Tense_Imparfait
+} Tense;
+
 @interface ViewController : UIViewController
+@property (assign, nonatomic) Tense selectedTense;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *tenseSegmentedControl;
+@property (weak, nonatomic) IBOutlet UISwitch *useAuxiliaryVerbSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *conjugatedVerbLabel;
 @end
 
