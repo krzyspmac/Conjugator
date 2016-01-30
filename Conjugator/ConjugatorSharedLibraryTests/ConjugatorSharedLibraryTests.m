@@ -179,11 +179,15 @@
             NSDictionary * tensePasseCompose = jsonDictionary[@"passeCompose"];
             TestPersons(aVerb, ConjugatorTense_PasseCompose, 0, tensePasseCompose);
             TestPersons(aVerb, ConjugatorTense_PasseCompose, ConjugatorOption_IncludeAxuliaryVerb, tensePasseCompose);
+            
+            NSDictionary * tenseImparfait = jsonDictionary[@"imparfait"];
+            TestPersons(aVerb, ConjugatorTense_Imparfait, 0, tenseImparfait);
         }
     };
 
 #if 0
-    TestVerb(@"avoir");
+    TestVerb(@"appeler");
+//    TestVerb(@"avoir");
 //    TestVerb(@"mener");
 //    TestVerb(@"esseyer");
 #else
