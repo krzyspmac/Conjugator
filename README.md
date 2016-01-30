@@ -9,10 +9,27 @@ The project is designed as an ARC, shared-library piece of code. You can use it 
 
 As a shared_library - just add the project to your own (drag & drop), add the dependencies, be sure to link the final library and you're set.
 
+If adding as a static library be sure to include all the neccessary files. More to follow when the project matures.
+
 ## Sample usage
 
     #import <ConjugatorSharedLibrary/Conjugator.h>
 
-    self.conjugator = [[Conjugator alloc] init];
-    NSString * conjugatedResult = [_conjugator conjugateVerb:@"être" type:Conjugator_Ils_Elles mode:ConjugatorMode_Present];
+**Conjugator initialization**
 
+    self.conjugator = [[Conjugator alloc] init];
+
+**Present tense**
+
+    NSString * conjugatedResult = [_conjugator conjugateVerb:@"être" type:Conjugator_Ils_Elles mode:ConjugatorMode_Present options:0];
+
+**Passé composé**
+
+    self.conjugator = [[Conjugator alloc] init];
+    NSString * conjugatedResult = [_conjugator conjugateVerb:@"être" type:Conjugator_Ils_Elles ConjugatorTense_PasseCompose options:0];
+    NSString * conjugatedResultWithAuxVerb = [_conjugator conjugateVerb:@"être" type:Conjugator_Ils_Elles ConjugatorTense_PasseCompose options:ConjugatorOption_IncludeAxuliaryVerb];
+    
+**Imparfait**
+
+    self.conjugator = [[Conjugator alloc] init];
+    NSString * conjugatedResult = [_conjugator conjugateVerb:@"être" type:Conjugator_Ils_Elles ConjugatorTense_Imparfait options:0];
