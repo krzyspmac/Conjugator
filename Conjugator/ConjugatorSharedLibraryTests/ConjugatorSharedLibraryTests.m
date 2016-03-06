@@ -111,7 +111,7 @@
         NSString * result = verb;
         for( NSString * aux in auxiliaryVerbs ) {
             NSRange found = [verb rangeOfString:aux];
-            if( found.location != NSNotFound ) {
+            if( found.location == 0 ) {
                 result = [verb substringFromIndex:NSMaxRange(found)];
             }
         }
@@ -130,7 +130,10 @@
                 conjugatedByScrapper = GetConjugatedStrippedOfAuxliary(conjugatedByScrapper, auxiliaryPasseComposeConjugated);
             }
             
-            if( [conjugatedByScrapper rangeOfString:@"/"].location != NSNotFound ) {
+            if( [verb isEqualToString:@"falloir"] && !conjugatedByScrapper && !conjugatedByModule ) {
+                // ok
+            }
+            else if( [conjugatedByScrapper rangeOfString:@"/"].location != NSNotFound ) {
                 BOOL atLeastOneIsCorrect = NO;
                 
                 NSArray * components = [conjugatedByScrapper componentsSeparatedByString:@"/"];
@@ -179,14 +182,15 @@
             NSDictionary * tensePasseCompose = jsonDictionary[@"passeCompose"];
             TestPersons(aVerb, ConjugatorTense_PasseCompose, 0, tensePasseCompose);
             TestPersons(aVerb, ConjugatorTense_PasseCompose, ConjugatorOption_IncludeAxuliaryVerb, tensePasseCompose);
-            
+
             NSDictionary * tenseImparfait = jsonDictionary[@"imparfait"];
             TestPersons(aVerb, ConjugatorTense_Imparfait, 0, tenseImparfait);
         }
     };
 
 #if 0
-    TestVerb(@"appeler");
+    TestVerb(@"falloir");
+//    TestVerb(@"appeler");
 //    TestVerb(@"avoir");
 //    TestVerb(@"mener");
 //    TestVerb(@"esseyer");

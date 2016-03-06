@@ -137,19 +137,21 @@ static NSArray * rulesArray = Nil;
         
         NSString * (^CombineConjugasion)(NSString*, NSString*, NSString*) = ^ NSString * (NSString * verb, NSString * ending, NSString * selectedEnding) {
             NSString * result = Nil;
-            NSString * processedEnding = selectedEnding;
-            if( [processedEnding rangeOfString:@"?"].location != NSNotFound && matchedInsideRegexInVerb ) { // ? replaces a found string inside the regex
-                processedEnding = [selectedEnding stringByReplacingOccurrencesOfString:@"?" withString:matchedInsideRegexInVerb];
-            }
-            NSRange range = [verb rangeOfString:ending options:NSBackwardsSearch];
-            if( range.location != NSNotFound && range.location < verb.length ) {
-                NSString * radical = [verb substringToIndex:range.location];
-                result = [radical stringByAppendingString:processedEnding];
-            }
-            
-            NSRange rangeOfPossibleAlternateEnding = [result rangeOfString:@"|"];
-            if( rangeOfPossibleAlternateEnding.location != NSNotFound ) {
-                result = [result substringToIndex:rangeOfPossibleAlternateEnding.location];
+            if( selectedEnding.length ) {
+                NSString * processedEnding = selectedEnding;
+                if( [processedEnding rangeOfString:@"?"].location != NSNotFound && matchedInsideRegexInVerb ) { // ? replaces a found string inside the regex
+                    processedEnding = [selectedEnding stringByReplacingOccurrencesOfString:@"?" withString:matchedInsideRegexInVerb];
+                }
+                NSRange range = [verb rangeOfString:ending options:NSBackwardsSearch];
+                if( range.location != NSNotFound && range.location < verb.length ) {
+                    NSString * radical = [verb substringToIndex:range.location];
+                    result = [radical stringByAppendingString:processedEnding];
+                }
+                
+                NSRange rangeOfPossibleAlternateEnding = [result rangeOfString:@"|"];
+                if( rangeOfPossibleAlternateEnding.location != NSNotFound ) {
+                    result = [result substringToIndex:rangeOfPossibleAlternateEnding.location];
+                }
             }
             
             return result;
@@ -198,19 +200,24 @@ static NSArray * rulesArray = Nil;
                     NSString * auxVerb = foundPrototype.aux;
                     NSString * conjugatedPasseCompose = Nil;
                     
-                    if( ![auxVerb isEqualToString:@"avoir"] ) {
-                        conjugatedPasseCompose = CombineConjugasion(verb, foundPrototype.ending, components[ (person >= Conjugator_Je && person <= Conjugator_Il_Elle) ? 0 : 2 ]);
-                    }
-                    else {
-                        conjugatedPasseCompose = CombineConjugasion(verb, foundPrototype.ending, components[0]);
-                    }
+                    BOOL isFalloir = [verb isEqualToString:@"falloir"];
+                    BOOL shouldConjugate = !isFalloir || (isFalloir && person == Conjugator_Il_Elle);
                     
-                    if( options & ConjugatorOption_IncludeAxuliaryVerb ) {
-                        NSString * conjugatedAux = [self conjugateVerb:auxVerb type:person mode:ConjugatorTense_Present options:0];
-                        result = [NSString stringWithFormat:@"%@ %@", conjugatedAux, conjugatedPasseCompose];
-                    }
-                    else {
-                        result = conjugatedPasseCompose;
+                    if( shouldConjugate ) {
+                        if( ![auxVerb isEqualToString:@"avoir"] ) {
+                            conjugatedPasseCompose = CombineConjugasion(verb, foundPrototype.ending, components[ (person >= Conjugator_Je && person <= Conjugator_Il_Elle) ? 0 : 2 ]);
+                        }
+                        else {
+                            conjugatedPasseCompose = CombineConjugasion(verb, foundPrototype.ending, components[0]);
+                        }
+                        
+                        if( options & ConjugatorOption_IncludeAxuliaryVerb ) {
+                            NSString * conjugatedAux = [self conjugateVerb:auxVerb type:person mode:ConjugatorTense_Present options:0];
+                            result = [NSString stringWithFormat:@"%@ %@", conjugatedAux, conjugatedPasseCompose];
+                        }
+                        else {
+                            result = conjugatedPasseCompose;
+                        }
                     }
                 }
                 else {
