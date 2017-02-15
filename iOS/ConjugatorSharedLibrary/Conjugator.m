@@ -62,9 +62,34 @@ static NSArray * rulesArray = Nil;
 
 - (id)init; // with default verbs.xml file; should be included with the library itself
 {
+#define VERBS_FILENAME  @"verbs"
+#define VERBS_EXT       @"xml"
+    
     NSBundle * bundle = [NSBundle bundleForClass:[self class]];
-    NSURL * urlToVerbsDefinition = [bundle URLForResource:@"verbs" withExtension:@"xml"];
-    self = [self initWithContentsOfRulesXML:urlToVerbsDefinition];
+    NSURL * urlToVerbs = Nil;
+    
+    do {
+        // check the conjugator bundle
+        NSURL * urlToConjugatorBundle = [bundle URLForResource:@"ConjugatorBundle" withExtension:@"bundle"];
+        if (urlToConjugatorBundle) {
+            NSBundle * conjugatorBundle = [[NSBundle alloc] initWithURL:urlToConjugatorBundle];
+            if (conjugatorBundle) {
+                urlToVerbs = [conjugatorBundle URLForResource:VERBS_FILENAME withExtension:VERBS_EXT];
+            }
+        }
+        
+        if (urlToVerbs) {
+            break;
+        }
+        
+        // else check anything else
+        urlToVerbs = [bundle URLForResource:VERBS_FILENAME withExtension:VERBS_EXT];
+    } while (NO);
+
+    self = [self initWithContentsOfRulesXML:urlToVerbs];
+    if (self) {
+        
+    }
     return self;
 }
 

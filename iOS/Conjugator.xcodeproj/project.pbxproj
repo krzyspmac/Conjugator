@@ -21,11 +21,12 @@
 		7F2A94C91C1FB2910043C915 /* ConjugatorSharedLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2A94B11C1FB2900043C915 /* ConjugatorSharedLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7F2A94D31C1FB2AD0043C915 /* Conjugator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F2A94D11C1FB2AD0043C915 /* Conjugator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7F2A94D41C1FB2AD0043C915 /* Conjugator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2A94D21C1FB2AD0043C915 /* Conjugator.m */; };
-		7F2A94D61C1FB2F40043C915 /* verbs.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7F2A94D51C1FB2B90043C915 /* verbs.xml */; };
 		7F305F801C55A188008DC915 /* verbs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F305F7F1C55A188008DC915 /* verbs.plist */; };
 		7F82ED911C1FE7540091FA30 /* ConjugatorStaticLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7F82ED901C1FE7540091FA30 /* ConjugatorStaticLibrary.h */; };
 		7F82ED931C1FE7540091FA30 /* ConjugatorStaticLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F82ED921C1FE7540091FA30 /* ConjugatorStaticLibrary.m */; };
 		7F82ED971C1FE7610091FA30 /* Conjugator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2A94D21C1FB2AD0043C915 /* Conjugator.m */; };
+		7FD0DE941E53ECF2005B99A5 /* verbs.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7F2A94D51C1FB2B90043C915 /* verbs.xml */; };
+		7FD0DE971E53ED16005B99A5 /* ConjugatorBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0DE8E1E53ECEA005B99A5 /* ConjugatorBundle.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7F2A94B01C1FB2900043C915;
 			remoteInfo = ConjugatorSharedLibrary;
+		};
+		7FD0DE951E53ECFF005B99A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2A943E1C1FB0B90043C915 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7FD0DE8D1E53ECEA005B99A5;
+			remoteInfo = Conjugator;
+		};
+		7FD0DE981E53EDA7005B99A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2A943E1C1FB0B90043C915 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7FD0DE8D1E53ECEA005B99A5;
+			remoteInfo = ConjugatorBundle;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -101,6 +116,8 @@
 		7F82ED8E1C1FE7540091FA30 /* libConjugatorStaticLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libConjugatorStaticLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F82ED901C1FE7540091FA30 /* ConjugatorStaticLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConjugatorStaticLibrary.h; sourceTree = "<group>"; };
 		7F82ED921C1FE7540091FA30 /* ConjugatorStaticLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConjugatorStaticLibrary.m; sourceTree = "<group>"; };
+		7FD0DE8E1E53ECEA005B99A5 /* ConjugatorBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConjugatorBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FD0DE901E53ECEA005B99A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +151,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7FD0DE8B1E53ECEA005B99A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -144,6 +168,7 @@
 				7F2A94B21C1FB2900043C915 /* ConjugatorSharedLibrary */,
 				7F2A94C11C1FB2910043C915 /* ConjugatorSharedLibraryTests */,
 				7F82ED8F1C1FE7540091FA30 /* ConjugatorStaticLibrary */,
+				7FD0DE8F1E53ECEA005B99A5 /* ConjugatorBundle */,
 				7F2A94471C1FB0B90043C915 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -155,6 +180,7 @@
 				7F2A94B11C1FB2900043C915 /* ConjugatorSharedLibrary.framework */,
 				7F2A94BB1C1FB2900043C915 /* ConjugatorSharedLibraryTests.xctest */,
 				7F82ED8E1C1FE7540091FA30 /* libConjugatorStaticLibrary.a */,
+				7FD0DE8E1E53ECEA005B99A5 /* ConjugatorBundle.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -231,6 +257,15 @@
 			path = ConjugatorStaticLibrary;
 			sourceTree = "<group>";
 		};
+		7FD0DE8F1E53ECEA005B99A5 /* ConjugatorBundle */ = {
+			isa = PBXGroup;
+			children = (
+				7FD0DE901E53ECEA005B99A5 /* Info.plist */,
+			);
+			name = ConjugatorBundle;
+			path = Conjugator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -277,6 +312,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7FD0DE961E53ECFF005B99A5 /* PBXTargetDependency */,
 			);
 			name = ConjugatorSharedLibrary;
 			productName = ConjugatorSharedLibrary;
@@ -313,11 +349,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				7FD0DE991E53EDA7005B99A5 /* PBXTargetDependency */,
 			);
 			name = ConjugatorStaticLibrary;
 			productName = ConjugatorStaticLibrary;
 			productReference = 7F82ED8E1C1FE7540091FA30 /* libConjugatorStaticLibrary.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		7FD0DE8D1E53ECEA005B99A5 /* ConjugatorBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FD0DE931E53ECEA005B99A5 /* Build configuration list for PBXNativeTarget "ConjugatorBundle" */;
+			buildPhases = (
+				7FD0DE8A1E53ECEA005B99A5 /* Sources */,
+				7FD0DE8B1E53ECEA005B99A5 /* Frameworks */,
+				7FD0DE8C1E53ECEA005B99A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ConjugatorBundle;
+			productName = Conjugator;
+			productReference = 7FD0DE8E1E53ECEA005B99A5 /* ConjugatorBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -341,6 +395,10 @@
 					7F82ED8D1C1FE7540091FA30 = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					7FD0DE8D1E53ECEA005B99A5 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 7F2A94411C1FB0B90043C915 /* Build configuration list for PBXProject "Conjugator" */;
@@ -360,6 +418,7 @@
 				7F2A94B01C1FB2900043C915 /* ConjugatorSharedLibrary */,
 				7F82ED8D1C1FE7540091FA30 /* ConjugatorStaticLibrary */,
 				7F2A94BA1C1FB2900043C915 /* ConjugatorSharedLibraryTests */,
+				7FD0DE8D1E53ECEA005B99A5 /* ConjugatorBundle */,
 			);
 		};
 /* End PBXProject section */
@@ -380,7 +439,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F2A94D61C1FB2F40043C915 /* verbs.xml in Resources */,
+				7FD0DE971E53ED16005B99A5 /* ConjugatorBundle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +448,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F20C4141C58659200D0E3A7 /* ConjugatedVerbs in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FD0DE8C1E53ECEA005B99A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FD0DE941E53ECF2005B99A5 /* verbs.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +497,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7FD0DE8A1E53ECEA005B99A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -447,6 +521,16 @@
 			isa = PBXTargetDependency;
 			target = 7F2A94B01C1FB2900043C915 /* ConjugatorSharedLibrary */;
 			targetProxy = 7F2A94C61C1FB2910043C915 /* PBXContainerItemProxy */;
+		};
+		7FD0DE961E53ECFF005B99A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7FD0DE8D1E53ECEA005B99A5 /* ConjugatorBundle */;
+			targetProxy = 7FD0DE951E53ECFF005B99A5 /* PBXContainerItemProxy */;
+		};
+		7FD0DE991E53EDA7005B99A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7FD0DE8D1E53ECEA005B99A5 /* ConjugatorBundle */;
+			targetProxy = 7FD0DE981E53EDA7005B99A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -684,6 +768,46 @@
 			};
 			name = Release;
 		};
+		7FD0DE911E53ECEA005B99A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = Conjugator/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = net.krzysp.test.Conjugator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		7FD0DE921E53ECEA005B99A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Conjugator/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = net.krzysp.test.Conjugator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -731,6 +855,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		7FD0DE931E53ECEA005B99A5 /* Build configuration list for PBXNativeTarget "ConjugatorBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FD0DE911E53ECEA005B99A5 /* Debug */,
+				7FD0DE921E53ECEA005B99A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -20,13 +20,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConjugatorSharedLibrary/Conjugator.m"
-            timestampString = "478999408.685761"
+            timestampString = "508817181.928155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "-regularExpression"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -36,13 +36,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConjugatorSharedLibrary/Conjugator.m"
-            timestampString = "478998528.553898"
+            timestampString = "508817181.928155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-conjugateVerb:type:mode:options:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -84,13 +84,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConjugatorSharedLibrary/Conjugator.m"
-            timestampString = "478998528.553898"
+            timestampString = "508817181.928155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "-conjugateVerb:type:mode:options:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
