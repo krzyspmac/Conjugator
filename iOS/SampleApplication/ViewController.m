@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <ConjugatorSharedLibrary/Conjugator.h>
+#import <ConjugatorSharedLibrary/ConjugatorSharedLibrary.h>
 
 enum : NSUInteger {
     UITAG_Person_Sing_1st       = 1000,
@@ -20,7 +20,7 @@ enum : NSUInteger {
 
 @interface ViewController ()
 @property (nonatomic, strong) NSArray * verbs;
-@property (nonatomic, strong) Conjugator * conjugator;
+@property (nonatomic, strong) FRConjugatorController * conjugator;
 @property (nonatomic, assign) NSInteger verbIndex;
 @end
 
@@ -30,7 +30,7 @@ enum : NSUInteger {
 {
     self = [super initWithCoder:aDecoder];
     if( self ) {
-        self.conjugator = [[Conjugator alloc] init];
+        self.conjugator = [[FRConjugatorController alloc] init];
         
         NSString * verbsPath = [[NSBundle mainBundle] pathForResource:@"verbs" ofType:@"plist"];
         NSDictionary * verbsDictionary = [[NSDictionary alloc] initWithContentsOfFile:verbsPath];
@@ -71,8 +71,8 @@ enum : NSUInteger {
         ;
 #endif
         
-        Conjugator_Tense tense = (Conjugator_Tense)_selectedTense;
-        Conjugator_Option option = _useAuxiliaryVerbSwitch.on ? ConjugatorOption_IncludeAxuliaryVerb : 0;
+        FRConjugator_Tense tense = (FRConjugator_Tense)_selectedTense;
+        FRConjugator_Option option = _useAuxiliaryVerbSwitch.on ? FRConjugatorOption_IncludeAxuliaryVerb : 0;
         
         _conjugatedVerbLabel.text = [NSString stringWithFormat:@"%@ %ld/%ld", verb, (long)_verbIndex+1, (long)_verbs.count];
         for( NSInteger tag = UITAG_Person_Sing_1st; tag <= UITAG_Person_Plur_3rd; tag++ ) {
@@ -112,27 +112,27 @@ enum : NSUInteger {
     [self update];
 }
 
-+ (Conjugator_Person)getConjugatorPersonFromTag:(NSInteger)tag;
++ (FRConjugator_Person)getConjugatorPersonFromTag:(NSInteger)tag;
 {
-    Conjugator_Person result = -1;
+    FRConjugator_Person result = -1;
     switch(tag){
         case UITAG_Person_Sing_1st:
-            result = Conjugator_Je;
+            result = FRConjugator_Je;
             break;
         case UITAG_Person_Sing_2nd:
-            result = Conjugator_Tu;
+            result = FRConjugator_Tu;
             break;
         case UITAG_Person_Sing_3rd:
-            result = Conjugator_Il_Elle;
+            result = FRConjugator_Il_Elle;
             break;
         case UITAG_Person_Plur_1st:
-            result = Conjugator_Nous;
+            result = FRConjugator_Nous;
             break;
         case UITAG_Person_Plur_2nd:
-            result = Conjugator_Vous;
+            result = FRConjugator_Vous;
             break;
         case UITAG_Person_Plur_3rd:
-            result = Conjugator_Ils_Elles;
+            result = FRConjugator_Ils_Elles;
             break;
     }
     return result;

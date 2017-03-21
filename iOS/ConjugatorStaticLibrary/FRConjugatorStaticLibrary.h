@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ConjugatorStaticLibrary : NSObject
+@interface FRConjugatorStaticLibrary : NSObject
 
 @end
