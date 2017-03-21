@@ -6,8 +6,8 @@
 //  Copyright © 2015 krzysp.net. All rights reserved.
 //
 
-#import "ConjugatorStaticLibrary.h"
+#import "FRConjugatorStaticLibrary.h"
 
-@implementation ConjugatorStaticLibrary
+@implementation FRConjugatorStaticLibrary
 
 @end

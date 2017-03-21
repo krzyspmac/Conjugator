@@ -16,4 +16,4 @@ FOUNDATION_EXPORT const unsigned char ConjugatorSharedLibraryVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <ConjugatorSharedLibrary/PublicHeader.h>
 
-#import <ConjugatorSharedLibrary/Conjugator.h>
+#import <ConjugatorSharedLibrary/FRConjugatorController.h>

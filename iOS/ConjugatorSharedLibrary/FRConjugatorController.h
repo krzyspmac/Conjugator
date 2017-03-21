@@ -12,32 +12,32 @@
  Conjugator persons.
  */
 typedef enum : NSUInteger {
-    Conjugator_Je               = 0,
-    Conjugator_Tu               = 1,
-    Conjugator_Il_Elle          = 2,
+    FRConjugator_Je               = 0,
+    FRConjugator_Tu               = 1,
+    FRConjugator_Il_Elle          = 2,
     
-    Conjugator_Nous             = 3,
-    Conjugator_Vous             = 4,
-    Conjugator_Ils_Elles        = 5,
-} Conjugator_Person;
+    FRConjugator_Nous             = 3,
+    FRConjugator_Vous             = 4,
+    FRConjugator_Ils_Elles        = 5,
+} FRConjugator_Person;
 
 /**
  Conjugator tenses.
  */
 typedef enum : NSUInteger {
-    ConjugatorTense_Present,
-    ConjugatorTense_PasseCompose, 
-    ConjugatorTense_Imparfait
-} Conjugator_Tense;
+    FRConjugatorTense_Present,
+    FRConjugatorTense_PasseCompose, 
+    FRConjugatorTense_Imparfait
+} FRConjugator_Tense;
 
 /**
  Conjugator options
  */
 typedef enum : NSUInteger {
-    ConjugatorOption_IncludeAxuliaryVerb   = 1
-} Conjugator_Option;
+    FRConjugatorOption_IncludeAxuliaryVerb   = 1
+} FRConjugator_Option;
 
-@interface Conjugator : NSObject
+@interface FRConjugatorController : NSObject
 
 /**
  Default initializer. Will try to initialize with -initWithContentsOfRulesXML: and use the verbs.xml that is include in the shared library.
@@ -55,13 +55,13 @@ typedef enum : NSUInteger {
 @property (nonatomic, readonly) NSArray * prototypeRules;
 
 /**
- Return `je' for Conjugator_Je, `tu' for Conjugator_Tu, etc.
+ Return `je' for FRConjugator_Je, `tu' for FRConjugator_Tu, etc.
  */
-+ (NSString*)textForPerson:(Conjugator_Person)person;
++ (NSString*)textForPerson:(FRConjugator_Person)person;
 
 /**
  Conjugate the appropriate person using given mode.
  */
-- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)person mode:(Conjugator_Tense)tense options:(Conjugator_Option)options;
+- (NSString*)conjugateVerb:(NSString*)verb type:(FRConjugator_Person)person mode:(FRConjugator_Tense)tense options:(FRConjugator_Option)options;
 
 @end

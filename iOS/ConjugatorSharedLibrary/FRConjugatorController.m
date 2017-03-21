@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 krzysp.net. All rights reserved.
 //
 
-#import "Conjugator.h"
+#import "FRConjugatorController.h"
 
 static NSArray * rulesArray = Nil;
 
@@ -33,13 +33,13 @@ static NSArray * rulesArray = Nil;
 
 @end
 
-@interface Conjugator () <NSXMLParserDelegate>
+@interface FRConjugatorController () <NSXMLParserDelegate>
 @property (nonatomic, strong) NSMutableArray * parsingRules;
 @property (nonatomic, strong) NSArray * prototypeRules;
 @property (nonatomic, strong) NSRegularExpression * regularExpression;
 @end
 
-@implementation Conjugator
+@implementation FRConjugatorController
 
 - (id)initWithContentsOfRulesXML:(NSURL*)rulesXMLURL;
 {
@@ -120,7 +120,7 @@ static NSArray * rulesArray = Nil;
 
 #pragma mark - Conjugate
 
-- (NSString*)conjugateVerb:(NSString*)verb type:(Conjugator_Person)person mode:(Conjugator_Tense)tense options:(Conjugator_Option)options;
+- (NSString*)conjugateVerb:(NSString*)verb type:(FRConjugator_Person)person mode:(FRConjugator_Tense)tense options:(FRConjugator_Option)options;
 {
     NSString * result = Nil;
     NSRange regexSearchRange = NSMakeRange(0, verb.length);
@@ -183,7 +183,7 @@ static NSArray * rulesArray = Nil;
         };
         
         switch(tense){
-            case ConjugatorTense_Present:
+            case FRConjugatorTense_Present:
             {
                 componentsString = foundPrototype.present;
                 NSArray * components = [componentsString componentsSeparatedByString:@","];
@@ -200,7 +200,7 @@ static NSArray * rulesArray = Nil;
                 }
                 break;
             }
-            case ConjugatorTense_Imparfait:
+            case FRConjugatorTense_Imparfait:
             {
                 componentsString = foundPrototype.imparfait;
                 NSArray * components = [componentsString componentsSeparatedByString:@","];
@@ -217,7 +217,7 @@ static NSArray * rulesArray = Nil;
                 }
                 break;
             }
-            case ConjugatorTense_PasseCompose:
+            case FRConjugatorTense_PasseCompose:
             {
                 componentsString = foundPrototype.ppasse;
                 NSArray * components = [componentsString componentsSeparatedByString:@","];
@@ -226,18 +226,18 @@ static NSArray * rulesArray = Nil;
                     NSString * conjugatedPasseCompose = Nil;
                     
                     BOOL isFalloir = [verb isEqualToString:@"falloir"];
-                    BOOL shouldConjugate = !isFalloir || (isFalloir && person == Conjugator_Il_Elle);
+                    BOOL shouldConjugate = !isFalloir || (isFalloir && person == FRConjugator_Il_Elle);
                     
                     if( shouldConjugate ) {
                         if( ![auxVerb isEqualToString:@"avoir"] ) {
-                            conjugatedPasseCompose = CombineConjugasion(verb, foundPrototype.ending, components[ (person >= Conjugator_Je && person <= Conjugator_Il_Elle) ? 0 : 2 ]);
+                            conjugatedPasseCompose = CombineConjugasion(verb, foundPrototype.ending, components[ (person >= FRConjugator_Je && person <= FRConjugator_Il_Elle) ? 0 : 2 ]);
                         }
                         else {
                             conjugatedPasseCompose = CombineConjugasion(verb, foundPrototype.ending, components[0]);
                         }
                         
-                        if( options & ConjugatorOption_IncludeAxuliaryVerb ) {
-                            NSString * conjugatedAux = [self conjugateVerb:auxVerb type:person mode:ConjugatorTense_Present options:0];
+                        if( options & FRConjugatorOption_IncludeAxuliaryVerb ) {
+                            NSString * conjugatedAux = [self conjugateVerb:auxVerb type:person mode:FRConjugatorTense_Present options:0];
                             result = [NSString stringWithFormat:@"%@ %@", conjugatedAux, conjugatedPasseCompose];
                         }
                         else {
@@ -259,7 +259,7 @@ static NSArray * rulesArray = Nil;
     return result;
 }
 
-+ (NSString*)textForPerson:(Conjugator_Person)person;
++ (NSString*)textForPerson:(FRConjugator_Person)person;
 {
     static NSString * Persons[6] = { @"je", @"tu", @"il/elle", @"nous", @"vous", @"ils/elles" };
     NSString * result = Persons[person];

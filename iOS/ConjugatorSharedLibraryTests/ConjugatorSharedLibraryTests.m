@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import <ConjugatorSharedLibrary/Conjugator.h>
+#import <ConjugatorSharedLibrary/FRConjugatorController.h>
 
 @interface Conjugator_Tests : XCTestCase
-@property (nonatomic, strong) Conjugator * conjugator;
+@property (nonatomic, strong) FRConjugatorController * conjugator;
 @end
 
 @implementation Conjugator_Tests
@@ -19,7 +19,7 @@
 - (void)setUp
 {
     [super setUp];
-    self.conjugator = [[Conjugator alloc] init];
+    self.conjugator = [[FRConjugatorController alloc] init];
 }
 
 - (void)tearDown;
@@ -35,48 +35,48 @@
 
 - (void)testSimpleConjugation;
 {
-    NSString * result = [_conjugator conjugateVerb:@"être" type:Conjugator_Je mode:ConjugatorTense_Present options:0];
+    NSString * result = [_conjugator conjugateVerb:@"être" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0];
     XCTAssertNotNil(result, @"Must have a result");
     XCTAssertTrue([result isEqualToString:@"suis"], @"Wrong conjugation returned");
     
-    XCTAssertTrue([[_conjugator conjugateVerb:@"mener" type:Conjugator_Tu mode:ConjugatorTense_Present options:0] isEqualToString:@"mènes"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"mener" type:FRConjugator_Tu mode:FRConjugatorTense_Present options:0] isEqualToString:@"mènes"], @"Wrong conjugation result");
     
-    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:Conjugator_Tu mode:ConjugatorTense_Present options:0] isEqualToString:@"es"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:Conjugator_Il_Elle mode:ConjugatorTense_Present options:0] isEqualToString:@"est"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:Conjugator_Nous mode:ConjugatorTense_Present options:0] isEqualToString:@"sommes"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:Conjugator_Vous mode:ConjugatorTense_Present options:0] isEqualToString:@"êtes"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:Conjugator_Ils_Elles mode:ConjugatorTense_Present options:0] isEqualToString:@"sont"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:FRConjugator_Tu mode:FRConjugatorTense_Present options:0] isEqualToString:@"es"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:FRConjugator_Il_Elle mode:FRConjugatorTense_Present options:0] isEqualToString:@"est"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:FRConjugator_Nous mode:FRConjugatorTense_Present options:0] isEqualToString:@"sommes"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:FRConjugator_Vous mode:FRConjugatorTense_Present options:0] isEqualToString:@"êtes"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:FRConjugator_Ils_Elles mode:FRConjugatorTense_Present options:0] isEqualToString:@"sont"], @"Wrong conjugation result");
     
-    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:Conjugator_Je mode:ConjugatorTense_Imparfait options:0] isEqualToString:@"étais"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"être" type:FRConjugator_Je mode:FRConjugatorTense_Imparfait options:0] isEqualToString:@"étais"], @"Wrong conjugation result");
     
-    XCTAssertTrue([[_conjugator conjugateVerb:@"soumettre" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"soumets"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"soumettre" type:Conjugator_Je mode:ConjugatorTense_PasseCompose options:0] isEqualToString:@"soumis"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"soumettre" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"soumets"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"soumettre" type:FRConjugator_Je mode:FRConjugatorTense_PasseCompose options:0] isEqualToString:@"soumis"], @"Wrong conjugation result");
     
-    XCTAssertTrue([[_conjugator conjugateVerb:@"permettre" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"permets"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"servir" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"sers"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"savoir" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"sais"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"chercher" type:Conjugator_Nous mode:ConjugatorTense_Present options:0] isEqualToString:@"cherchons"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"savoir" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"sais"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"concerner" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"concerne"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"consolider" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"consolide"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"écrire" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"écris"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"appeler" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"appelle"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"appeler" type:Conjugator_Je mode:ConjugatorTense_PasseCompose options:0] isEqualToString:@"appelé"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"jeter" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"jette"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"perdre" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"perds"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"relever" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"relève"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"permettre" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"permets"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"servir" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"sers"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"savoir" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"sais"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"chercher" type:FRConjugator_Nous mode:FRConjugatorTense_Present options:0] isEqualToString:@"cherchons"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"savoir" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"sais"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"concerner" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"concerne"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"consolider" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"consolide"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"écrire" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"écris"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"appeler" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"appelle"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"appeler" type:FRConjugator_Je mode:FRConjugatorTense_PasseCompose options:0] isEqualToString:@"appelé"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"jeter" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"jette"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"perdre" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"perds"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"relever" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"relève"], @"Wrong conjugation result");
 
-    XCTAssertTrue([[_conjugator conjugateVerb:@"considérer" type:Conjugator_Je mode:ConjugatorTense_Present options:0] isEqualToString:@"considère"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"considérer" type:Conjugator_Je mode:ConjugatorTense_Imparfait options:0] isEqualToString:@"considérais"], @"Wrong conjugation result");
-    XCTAssertTrue([[_conjugator conjugateVerb:@"considérer" type:Conjugator_Je mode:ConjugatorTense_PasseCompose options:0] isEqualToString:@"considéré"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"considérer" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0] isEqualToString:@"considère"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"considérer" type:FRConjugator_Je mode:FRConjugatorTense_Imparfait options:0] isEqualToString:@"considérais"], @"Wrong conjugation result");
+    XCTAssertTrue([[_conjugator conjugateVerb:@"considérer" type:FRConjugator_Je mode:FRConjugatorTense_PasseCompose options:0] isEqualToString:@"considéré"], @"Wrong conjugation result");
     
     // only the third person; so far doesn't work; TODO
-    //XCTAssertTrue([[_conjugator conjugateVerb:@"falloir" type:Conjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"sers"], @"Wrong conjugation result");
+    //XCTAssertTrue([[_conjugator conjugateVerb:@"falloir" type:FRConjugator_Je mode:ConjugatorMode_Present] isEqualToString:@"sers"], @"Wrong conjugation result");
 }
 
 - (void)testParticipePasse;
 {
-    NSString * result = [_conjugator conjugateVerb:@"être" type:Conjugator_Je mode:ConjugatorTense_PasseCompose options:0];
+    NSString * result = [_conjugator conjugateVerb:@"être" type:FRConjugator_Je mode:FRConjugatorTense_PasseCompose options:0];
     XCTAssertNotNil(result, @"Must have a result");
     XCTAssertTrue([result isEqualToString:@"été"], @"Wrong conjugation returned");
 }
@@ -85,7 +85,7 @@
 {
     __block NSString * result = Nil;
     [self measureBlock:^{
-        result = [_conjugator conjugateVerb:@"être" type:Conjugator_Je mode:ConjugatorTense_Present options:0];
+        result = [_conjugator conjugateVerb:@"être" type:FRConjugator_Je mode:FRConjugatorTense_Present options:0];
     }];
 }
 
@@ -118,15 +118,15 @@
         return result;
     };
     
-    void (^TestPersons)(NSString*, Conjugator_Tense, Conjugator_Option, NSDictionary*) = ^(NSString * verb, Conjugator_Tense mode, Conjugator_Option option, NSDictionary * tenseDictionary){
+    void (^TestPersons)(NSString*, FRConjugator_Tense, FRConjugator_Option, NSDictionary*) = ^(NSString * verb, FRConjugator_Tense mode, FRConjugator_Option option, NSDictionary * tenseDictionary){
         for( NSInteger i = 0; i < 6; i++ ) {
-            Conjugator_Person person = (Conjugator_Person)Conjugator_Je + i;
+            FRConjugator_Person person = (FRConjugator_Person)FRConjugator_Je + i;
             NSString * personString = personsToTest[i];
             
             NSString * conjugatedByModule = [_conjugator conjugateVerb:verb type:person mode:mode options:option];
             NSString * conjugatedByScrapper = tenseDictionary[personString];
             
-            if( !(option & ConjugatorOption_IncludeAxuliaryVerb) ) {
+            if( !(option & FRConjugatorOption_IncludeAxuliaryVerb) ) {
                 conjugatedByScrapper = GetConjugatedStrippedOfAuxliary(conjugatedByScrapper, auxiliaryPasseComposeConjugated);
             }
             
@@ -177,14 +177,14 @@
             XCTAssertNotNil(jsonDictionary, @"JSON dictionary must exist for verb: %@", aVerb);
             
             NSDictionary * tensePresent = jsonDictionary[@"present"];
-            TestPersons(aVerb, ConjugatorTense_Present, 0, tensePresent);
+            TestPersons(aVerb, FRConjugatorTense_Present, 0, tensePresent);
             
             NSDictionary * tensePasseCompose = jsonDictionary[@"passeCompose"];
-            TestPersons(aVerb, ConjugatorTense_PasseCompose, 0, tensePasseCompose);
-            TestPersons(aVerb, ConjugatorTense_PasseCompose, ConjugatorOption_IncludeAxuliaryVerb, tensePasseCompose);
+            TestPersons(aVerb, FRConjugatorTense_PasseCompose, 0, tensePasseCompose);
+            TestPersons(aVerb, FRConjugatorTense_PasseCompose, FRConjugatorOption_IncludeAxuliaryVerb, tensePasseCompose);
 
             NSDictionary * tenseImparfait = jsonDictionary[@"imparfait"];
-            TestPersons(aVerb, ConjugatorTense_Imparfait, 0, tenseImparfait);
+            TestPersons(aVerb, FRConjugatorTense_Imparfait, 0, tenseImparfait);
         }
     };
 
