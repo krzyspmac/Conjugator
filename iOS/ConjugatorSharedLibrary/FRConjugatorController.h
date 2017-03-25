@@ -25,9 +25,9 @@ typedef enum : NSUInteger {
  Conjugator tenses.
  */
 typedef enum : NSUInteger {
-    FRConjugatorTense_Present,
-    FRConjugatorTense_PasseCompose, 
-    FRConjugatorTense_Imparfait
+    FRConjugatorTense_Present           = 0,
+    FRConjugatorTense_PasseCompose      = 1,
+    FRConjugatorTense_Imparfait         = 2
 } FRConjugator_Tense;
 
 /**
