@@ -243,7 +243,7 @@
             ConjugatorPerson * personObject = persons[i];
             NSString * personString = personsToTest[i];
             
-            NSString * conjugatedByModule = [self.swiftConjugator conjugateWithVerb:verb withPerson:personObject withTense:tense]; //[_conjugator conjugateVerb:verb type:person mode:mode options:option];
+            NSString * conjugatedByModule = [self.swiftConjugator conjugateWithVerb:verb withPerson:personObject withTense:tense includeAuxVerbs:auxVerb]; //[_conjugator conjugateVerb:verb type:person mode:mode options:option];
             NSString * conjugatedByScrapper = tenseDictionary[personString];
             
             if( !auxVerb ) {
@@ -281,6 +281,10 @@
     };
     
     for( NSString * aVerb in simpleVerbs ) {
+        if( [aVerb isEqualToString:@"falloir"] ) {
+            continue;
+        }
+
         NSData *data = [aVerb dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
         NSString *verbWithoutAccents = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
         XCTAssertNotNil(verbWithoutAccents, @"Verb must exist");
@@ -299,14 +303,12 @@
             NSDictionary * tensePresent = jsonDictionary[@"present"];
             TestPersons(aVerb, tenses[0], NO, tensePresent);
 
-//            TestPersons(aVerb, FRConjugatorTense_Present, 0, tensePresent);
-//            
-//            NSDictionary * tensePasseCompose = jsonDictionary[@"passeCompose"];
-//            TestPersons(aVerb, FRConjugatorTense_PasseCompose, 0, tensePasseCompose);
-//            TestPersons(aVerb, FRConjugatorTense_PasseCompose, FRConjugatorOption_IncludeAxuliaryVerb, tensePasseCompose);
+            NSDictionary * tensePasseCompose = jsonDictionary[@"passeCompose"];
+            TestPersons(aVerb, tenses[1], NO, tensePasseCompose);
+            TestPersons(aVerb, tenses[1], YES, tensePasseCompose);
             
             NSDictionary * tenseImparfait = jsonDictionary[@"imparfait"];
-            TestPersons(aVerb, tenses[1], NO, tenseImparfait);
+            TestPersons(aVerb, tenses[2], NO, tenseImparfait);
         }
     }
 }

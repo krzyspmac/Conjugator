@@ -8,17 +8,6 @@
 
 import UIKit
 
-// MARK: - Options
-public struct ConjugateOptions : OptionSet
-{
-    public let rawValue: Int
-    
-    public static let includeAuxiliaryVerb  = ConjugateOptions(rawValue: 1 << 0)
-    public static let requiresAccents       = ConjugateOptions(rawValue: 1 << 1)
-    
-    public init(rawValue: Int) { self.rawValue = rawValue }
-}
-
 @objc public class Conjugator: NSObject
 {
     // MARK: - Variables
@@ -48,24 +37,12 @@ public struct ConjugateOptions : OptionSet
     
     open func conjugate(verb: String, withPerson person: ConjugatorPerson, withTense tense: ConjugatorTense) -> String?
     {
-        var foundPrototype : ConjugatorPrototype?
-
-        for aPrototype : ConjugatorPrototype in module.getModulePrototypes()
-        {
-            let regex = aPrototype.regularExpression!
-            if regex.numberOfMatches(in: verb, options: [], range: NSRange.init(location: 0, length: verb.utf16.count)) > 0
-            {
-                foundPrototype = aPrototype;
-                break
-            }
-        }
-        
-        if foundPrototype != nil
-        {
-            return self.module.conjugate(withVerb: verb, withPrototype: foundPrototype!, withPerson: person, withTense: tense)
-        }
-        
-        return nil
+        return conjugate(verb: verb, withPerson: person, withTense: tense, includeAuxVerbs: false)
+    }
+    
+    open func conjugate(verb: String, withPerson person: ConjugatorPerson, withTense tense: ConjugatorTense, includeAuxVerbs auxVerbs : Bool = false) -> String?
+    {
+        return self.module.conjugate(withVerb: verb, withPerson: person, withTense: tense, useAuxVerb: auxVerbs)
     }
 }
 
@@ -130,8 +107,7 @@ public protocol ConjugatorModuleProtocol
     // all of the following methods can be called often; keep a cache around
     func getModuleName() -> String
     func getModuleVersion() -> String
-    func getModulePrototypes() -> [ConjugatorPrototype]
     func getPersons() -> [ConjugatorPerson]
     func getTenses() -> [ConjugatorTense]
-    func conjugate(withVerb verb : String, withPrototype prototype : ConjugatorPrototype, withPerson person : ConjugatorPerson, withTense tense : ConjugatorTense) -> String?
+    func conjugate(withVerb verb : String, withPerson person : ConjugatorPerson, withTense tense : ConjugatorTense, useAuxVerb useAux : Bool) -> String?
 }

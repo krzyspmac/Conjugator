@@ -116,12 +116,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConjugatorSwiftLibrary/French/FRConjugatorModule.swift"
-            timestampString = "512273477.385564"
+            timestampString = "512275793.164324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "conjugate(withVerb:withPrototype:withPerson:withTense:)"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "doConjugate(withVerb:withPrototype:withPerson:withTense:useAuxVerb:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConjugatorSwiftLibrary/French/FRConjugatorModule.swift"
+            timestampString = "512275793.164324"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "doConjugate(withVerb:withPrototype:withPerson:withTense:useAuxVerb:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

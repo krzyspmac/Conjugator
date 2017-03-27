@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import <ConjugatorSharedLibrary/ConjugatorSharedLibrary.h>
 #import <ConjugatorSwiftLibrary/ConjugatorSwiftLibrary.h>
 #import <ConjugatorSwiftLibrary/ConjugatorSwiftLibrary-Swift.h>
 
@@ -22,7 +21,7 @@ enum : NSUInteger {
 
 @interface ViewController ()
 @property (nonatomic, strong) NSArray * verbs;
-@property (nonatomic, strong) FRConjugatorController * conjugator;
+@property (nonatomic, strong) Conjugator * conjugator;
 @property (nonatomic, assign) NSInteger verbIndex;
 @end
 
@@ -32,7 +31,7 @@ enum : NSUInteger {
 {
     self = [super initWithCoder:aDecoder];
     if( self ) {
-        self.conjugator = [[FRConjugatorController alloc] init];
+        self.conjugator = [[Conjugator alloc] init];
         
         NSString * verbsPath = [[NSBundle mainBundle] pathForResource:@"verbs" ofType:@"plist"];
         NSDictionary * verbsDictionary = [[NSDictionary alloc] initWithContentsOfFile:verbsPath];
@@ -43,18 +42,6 @@ enum : NSUInteger {
 
 - (void)viewDidLoad;
 {
-//    Conjugator * c ;
-//    PConjugator * c = [[PConjugator alloc] init];
-    
-//    FRConjugator * c = [[FRConjugator alloc] init];
-    Conjugator * fr = [[Conjugator alloc] init];
-    
-    NSArray<ConjugatorPerson *> * persons = [fr getConjugatorPersons];
-    NSArray<ConjugatorTense *> * tenses = [fr getConjugatorTenses];
-    
-    NSString * result = [fr conjugateWithVerb:@"jeter" withPerson:persons[0] withTense:tenses[0]];
-    
-    
     [super viewDidLoad];
     self.verbIndex = 0;
 }
@@ -85,13 +72,14 @@ enum : NSUInteger {
         ;
 #endif
         
-        FRConjugator_Tense tense = (FRConjugator_Tense)_selectedTense;
-        FRConjugator_Option option = _useAuxiliaryVerbSwitch.on ? FRConjugatorOption_IncludeAxuliaryVerb : 0;
+        NSArray<ConjugatorTense *> * tenses = [self.conjugator getConjugatorTenses];
+        ConjugatorTense * tense = tenses[_selectedTense];
+        BOOL auxOption = _useAuxiliaryVerbSwitch.on;
         
         _conjugatedVerbLabel.text = [NSString stringWithFormat:@"%@ %ld/%ld", verb, (long)_verbIndex+1, (long)_verbs.count];
         for( NSInteger tag = UITAG_Person_Sing_1st; tag <= UITAG_Person_Plur_3rd; tag++ ) {
             UILabel * label = (UILabel*)[self.view viewWithTag:tag];
-            label.text = [_conjugator conjugateVerb:verb type:[ViewController getConjugatorPersonFromTag:tag] mode:tense options:option];
+            label.text = [_conjugator conjugateWithVerb:verb withPerson:[self getConjugatorPersonFromTag:tag] withTense:tense includeAuxVerbs:auxOption];
         }
     }
 }
@@ -126,30 +114,11 @@ enum : NSUInteger {
     [self update];
 }
 
-+ (FRConjugator_Person)getConjugatorPersonFromTag:(NSInteger)tag;
+- (ConjugatorPerson*)getConjugatorPersonFromTag:(NSInteger)tag;
 {
-    FRConjugator_Person result = -1;
-    switch(tag){
-        case UITAG_Person_Sing_1st:
-            result = FRConjugator_Je;
-            break;
-        case UITAG_Person_Sing_2nd:
-            result = FRConjugator_Tu;
-            break;
-        case UITAG_Person_Sing_3rd:
-            result = FRConjugator_Il_Elle;
-            break;
-        case UITAG_Person_Plur_1st:
-            result = FRConjugator_Nous;
-            break;
-        case UITAG_Person_Plur_2nd:
-            result = FRConjugator_Vous;
-            break;
-        case UITAG_Person_Plur_3rd:
-            result = FRConjugator_Ils_Elles;
-            break;
-    }
-    return result;
+    NSArray<ConjugatorPerson*> * persons = [self.conjugator getConjugatorPersons];
+    ConjugatorPerson * person = persons[tag - UITAG_Person_Sing_1st];
+    return person;
 }
 
 @end
