@@ -3,10 +3,24 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "__38-[Conjugator conjugateVerb:type:mode:]_block_invoke:Conjugator.m">
+         contextName = "-[Conjugator conjugateVerb:type:mode:]:Conjugator.m">
       </ContextState>
       <ContextState
-         contextName = "-[Conjugator conjugateVerb:type:mode:]:Conjugator.m">
+         contextName = "Conjugator.conjugate(verb : String, withPerson : ConjugatorPerson, withTense : ConjugatorTense) -&gt; String?:Conjugator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "verb.utf16.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController viewDidLoad]:ViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "FRConjugatorModule.conjugate(withVerb : String, withPrototype : ConjugatorPrototype, withPerson : ConjugatorPerson, withTense : ConjugatorTense) -&gt; String?:FRConjugatorModule.swift">
+      </ContextState>
+      <ContextState
+         contextName = "__38-[Conjugator conjugateVerb:type:mode:]_block_invoke:Conjugator.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
