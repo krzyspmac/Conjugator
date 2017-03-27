@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import <ConjugatorSharedLibrary/ConjugatorSharedLibrary.h>
+#import <ConjugatorSwiftLibrary/ConjugatorSwiftLibrary.h>
+#import <ConjugatorSwiftLibrary/ConjugatorSwiftLibrary-Swift.h>
 
 enum : NSUInteger {
     UITAG_Person_Sing_1st       = 1000,
@@ -41,6 +43,18 @@ enum : NSUInteger {
 
 - (void)viewDidLoad;
 {
+//    Conjugator * c ;
+//    PConjugator * c = [[PConjugator alloc] init];
+    
+//    FRConjugator * c = [[FRConjugator alloc] init];
+    Conjugator * fr = [[Conjugator alloc] init];
+    
+    NSArray<ConjugatorPerson *> * persons = [fr getConjugatorPersons];
+    NSArray<ConjugatorTense *> * tenses = [fr getConjugatorTenses];
+    
+    NSString * result = [fr conjugateWithVerb:@"jeter" withPerson:persons[0] withTense:tenses[0]];
+    
+    
     [super viewDidLoad];
     self.verbIndex = 0;
 }
