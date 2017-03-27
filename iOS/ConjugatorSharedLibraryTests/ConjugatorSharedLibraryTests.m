@@ -304,9 +304,9 @@
 //            NSDictionary * tensePasseCompose = jsonDictionary[@"passeCompose"];
 //            TestPersons(aVerb, FRConjugatorTense_PasseCompose, 0, tensePasseCompose);
 //            TestPersons(aVerb, FRConjugatorTense_PasseCompose, FRConjugatorOption_IncludeAxuliaryVerb, tensePasseCompose);
-//            
-//            NSDictionary * tenseImparfait = jsonDictionary[@"imparfait"];
-//            TestPersons(aVerb, FRConjugatorTense_Imparfait, 0, tenseImparfait);
+            
+            NSDictionary * tenseImparfait = jsonDictionary[@"imparfait"];
+            TestPersons(aVerb, tenses[1], NO, tenseImparfait);
         }
     }
 }

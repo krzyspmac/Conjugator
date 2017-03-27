@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConjugatorSwiftLibrary/French/FRConjugatorModule.swift"
-            timestampString = "512272052.50269"
+            timestampString = "512273477.385564"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "conjugate(withVerb:withPrototype:withPerson:withTense:)"
             landmarkType = "7">
          </BreakpointContent>

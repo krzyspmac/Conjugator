@@ -37,6 +37,7 @@ public class FRConjugatorModule: NSObject, ConjugatorModuleProtocol, XMLParserDe
     // MARK: - Module private definitions
     private struct Constants
     {
+        // act like indexes
         public static let Person1_Je = 0
         public static let Person2_Tu = 1
         public static let Person3_Il = 2
@@ -45,7 +46,11 @@ public class FRConjugatorModule: NSObject, ConjugatorModuleProtocol, XMLParserDe
         public static let Person5_Vous = 4
         public static let Person6_Ils  = 5
         
-        public static let Tense1_Present = 0
+        // act like indexes
+        public static let Tense_Present = 0
+        public static let Tense_Imparfait = 1
+        public static let Tense_PasseCompose = 2
+        
     }
     
     // MARK: - Module initialization
@@ -95,7 +100,8 @@ public class FRConjugatorModule: NSObject, ConjugatorModuleProtocol, XMLParserDe
         if self.tenses == nil
         {
             self.tenses = [
-                ConjugatorTense.init(withTenseIndex: Constants.Tense1_Present, withTenseString: "présent")
+                ConjugatorTense.init(withTenseIndex: Constants.Tense_Present, withTenseString: "présent"),
+                ConjugatorTense.init(withTenseIndex: Constants.Tense_Imparfait, withTenseString: "imparfait")
             ]
         }
         
@@ -122,15 +128,30 @@ public class FRConjugatorModule: NSObject, ConjugatorModuleProtocol, XMLParserDe
         
         switch tense.tenseIndex
         {
-        case Constants.Tense1_Present:
-            componentsString = frPrototype.present
-            let components : [String] = componentsString!.components(separatedBy: ",")
-            if components.count == 6
-            {
-                return combineConjugasion(withVerb: verb, withEnding: frPrototype.ending!, withSelectedEnding: components[person.personIndex], matchedInsideRegexInVerb: matchedInsideRegexInVerb)
-            }
-        default:
-            return nil
+            case Constants.Tense_Present:
+                componentsString = frPrototype.present
+                let components : [String] = componentsString!.components(separatedBy: ",")
+                if components.count == 6
+                {
+                    if person.personIndex < components.count
+                    {
+                        return combineConjugasion(withVerb: verb, withEnding: frPrototype.ending!, withSelectedEnding: components[person.personIndex], matchedInsideRegexInVerb: matchedInsideRegexInVerb)
+                    }
+                }
+            
+            case Constants.Tense_Imparfait:
+                componentsString = frPrototype.imparfait
+                let components : [String] = componentsString!.components(separatedBy: ",")
+                if components.count == 6
+                {
+                    if person.personIndex < components.count
+                    {
+                        return combineConjugasion(withVerb: verb, withEnding: frPrototype.ending!, withSelectedEnding: components[person.personIndex], matchedInsideRegexInVerb: matchedInsideRegexInVerb)
+                    }
+                }
+            
+            default:
+                return nil
         }
         return nil
     }
